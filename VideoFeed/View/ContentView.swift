@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import AVKit
 
 struct ContentView: View {
     
@@ -15,9 +16,13 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                ForEach(0...5, id: \.self) { video in
-                    Text("Video placeholder")
+                ForEach(vm.videos) { video in
+                    VideoPlayer(player: AVPlayer(url: URL(string: video.videoUrl)!))
+                        .frame(height: 240)
                 }
+            }
+            .refreshable {
+                Task { vm.fetchVideos }
             }
             .navigationTitle("Feed")
             .toolbar {
