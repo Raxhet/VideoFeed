@@ -6,16 +6,25 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            ScrollView {
+                ForEach(0...5, id: \.self) { video in
+                    Text("Video placeholder")
+                }
+            }
+            .navigationTitle("Feed")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Image(systemName: "plus")
+                        .foregroundColor(.black)
+                }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
