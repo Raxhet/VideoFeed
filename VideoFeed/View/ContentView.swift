@@ -9,6 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct ContentView: View {
+    
+    @StateObject var vm = ContentViewModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -19,8 +22,10 @@ struct ContentView: View {
             .navigationTitle("Feed")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "plus")
-                        .foregroundColor(.black)
+                    PhotosPicker(selection: $vm.selectedItem, matching: .videos) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.black)
+                    }
                 }
             }
             .padding()
